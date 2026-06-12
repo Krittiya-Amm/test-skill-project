@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>เทียบ Variant A vs B | ผักสลัด Landing</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { font-family: system-ui, 'IBM Plex Sans Thai', sans-serif; }
+  .frame-wrap { transition: width .3s ease; }
+  iframe { width: 100%; height: 100%; border: 0; background:#fff; }
+</style>
+</head>
+<body class="bg-slate-100 text-slate-800">
+
+<header class="bg-white border-b sticky top-0 z-10">
+  <div class="max-w-7xl mx-auto px-5 py-3 flex flex-wrap items-center gap-4 justify-between">
+    <h1 class="font-bold text-lg">เทียบ Design — ผักสลัด Landing</h1>
+    <div class="flex items-center gap-3 text-sm">
+      <div class="flex items-center gap-1 bg-slate-100 rounded-lg p-1">
+        <button onclick="setView('desktop')" id="v-desktop" class="px-3 py-1 rounded-md bg-white shadow-sm font-medium">🖥 Desktop</button>
+        <button onclick="setView('mobile')" id="v-mobile" class="px-3 py-1 rounded-md font-medium text-slate-500">📱 Mobile</button>
+      </div>
+      <div class="flex items-center gap-1 bg-slate-100 rounded-lg p-1">
+        <button onclick="setLang('th')" id="l-th" class="px-3 py-1 rounded-md bg-white shadow-sm font-medium">TH</button>
+        <button onclick="setLang('en')" id="l-en" class="px-3 py-1 rounded-md font-medium text-slate-500">EN</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-5 py-6 grid md:grid-cols-2 gap-6">
+  <section>
+    <div class="mb-3">
+      <div class="flex items-center gap-2"><span class="bg-emerald-600 text-white text-xs font-bold px-2 py-1 rounded">A</span><h2 class="font-bold">Fresh Garden</h2></div>
+      <p class="text-sm text-slate-500">เขียวสด สดชื่น เป็นกันเอง · approachable / mass-friendly</p>
+    </div>
+    <div class="bg-white rounded-xl shadow-sm overflow-hidden mx-auto frame-wrap" id="wrap-a" style="height:78vh;">
+      <iframe id="fa" src="variant-a-fresh-garden.html"></iframe>
+    </div>
+  </section>
+  <section>
+    <div class="mb-3">
+      <div class="flex items-center gap-2"><span class="bg-stone-700 text-white text-xs font-bold px-2 py-1 rounded">B</span><h2 class="font-bold">Premium Clean</h2></div>
+      <p class="text-sm text-slate-500">ขาว/เอิร์ธ มินิมอล พรีเมียม · editorial / high-end</p>
+    </div>
+    <div class="bg-white rounded-xl shadow-sm overflow-hidden mx-auto frame-wrap" id="wrap-b" style="height:78vh;">
+      <iframe id="fb" src="variant-b-premium-clean.html"></iframe>
+    </div>
+  </section>
+</main>
+
+<script>
+  function setView(v){
+    const wraps=[document.getElementById('wrap-a'),document.getElementById('wrap-b')];
+    wraps.forEach(w=>{ w.style.width = v==='mobile' ? '390px' : '100%'; });
+    document.getElementById('v-desktop').className='px-3 py-1 rounded-md font-medium '+(v==='desktop'?'bg-white shadow-sm':'text-slate-500');
+    document.getElementById('v-mobile').className='px-3 py-1 rounded-md font-medium '+(v==='mobile'?'bg-white shadow-sm':'text-slate-500');
+  }
+  function setLang(l){
+    ['fa','fb'].forEach(id=>{
+      const w=document.getElementById(id).contentWindow;
+      if(w && w.setLang) w.setLang(l);
+    });
+    document.getElementById('l-th').className='px-3 py-1 rounded-md font-medium '+(l==='th'?'bg-white shadow-sm':'text-slate-500');
+    document.getElementById('l-en').className='px-3 py-1 rounded-md font-medium '+(l==='en'?'bg-white shadow-sm':'text-slate-500');
+  }
+</script>
+</body>
+</html>

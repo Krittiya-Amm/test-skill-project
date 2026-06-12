@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Variant A — Fresh Garden | ผักสลัด</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          leaf: '#3E7C4F', lime: '#8FBF5B', cream: '#FAFAF5',
+          ink: '#1F2A24', earth: '#E8E2D0',
+        },
+        fontFamily: {
+          head: ['Poppins', 'IBM Plex Sans Thai', 'sans-serif'],
+          body: ['IBM Plex Sans Thai', 'Poppins', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'IBM Plex Sans Thai', 'Poppins', sans-serif; }
+  .ph { background: linear-gradient(135deg,#cfe6c4 0%,#a7d18a 50%,#7bb86a 100%); position:relative; overflow:hidden; }
+  .ph::after { content: attr(data-label); position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:2.5rem; opacity:.85; }
+  .lift { transition: transform .25s ease, box-shadow .25s ease; }
+  .lift:hover { transform: translateY(-6px); box-shadow: 0 18px 40px -12px rgba(62,124,79,.35); }
+  .fade { opacity:0; transform: translateY(20px); transition: all .7s ease; }
+  .fade.in { opacity:1; transform:none; }
+</style>
+</head>
+<body class="bg-cream text-ink font-body">
+
+<!-- NAV -->
+<header class="sticky top-0 z-50 bg-cream/90 backdrop-blur border-b border-leaf/10">
+  <nav class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+    <div class="flex items-center gap-2 font-head font-extrabold text-leaf text-xl">
+      <span class="text-2xl">🥗</span> FreshLeaf
+    </div>
+    <div class="hidden md:flex items-center gap-7 font-medium text-sm">
+      <a href="#products" class="hover:text-leaf" data-th="สินค้า" data-en="Products">สินค้า</a>
+      <a href="#why" class="hover:text-leaf" data-th="จุดเด่น" data-en="Why us">จุดเด่น</a>
+      <a href="#lifestyle" class="hover:text-leaf" data-th="ไลฟ์สไตล์" data-en="Lifestyle">ไลฟ์สไตล์</a>
+      <a href="#buy" class="hover:text-leaf" data-th="หาซื้อ" data-en="Where to buy">หาซื้อ</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <button onclick="setLang('th')" id="th-btn" class="text-sm font-semibold px-2 py-1 rounded text-leaf">TH</button>
+      <span class="text-leaf/30">|</span>
+      <button onclick="setLang('en')" id="en-btn" class="text-sm font-semibold px-2 py-1 rounded text-ink/40">EN</button>
+      <a href="#buy" class="ml-2 bg-leaf text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-leaf/90" data-th="หาซื้อเลย" data-en="Find us">หาซื้อเลย</a>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="max-w-6xl mx-auto px-5 pt-14 pb-20 grid md:grid-cols-2 gap-10 items-center">
+  <div class="fade">
+    <span class="inline-block bg-lime/25 text-leaf font-semibold text-xs px-3 py-1 rounded-full mb-5" data-th="🌿 สด คลีน ทุกวัน" data-en="🌿 Fresh & clean, every day">🌿 สด คลีน ทุกวัน</span>
+    <h1 class="font-head font-extrabold text-4xl md:text-5xl leading-tight mb-5" data-th="ผักสลัดสดใหม่\nพร้อมทานทุกมื้อ" data-en="Fresh salads,\nready to enjoy">ผักสลัดสดใหม่<br/>พร้อมทานทุกมื้อ</h1>
+    <p class="text-ink/70 text-lg mb-8 max-w-md" data-th="ผักสลัดคัดสด ล้างสะอาด พร้อมทาน วางขายแล้วที่ Top Supermarket และ Gourmet Market" data-en="Hand-picked, washed and ready to eat. Now available at Top Supermarket & Gourmet Market.">ผักสลัดคัดสด ล้างสะอาด พร้อมทาน วางขายแล้วที่ Top Supermarket และ Gourmet Market</p>
+    <div class="flex gap-3 flex-wrap">
+      <a href="#products" class="bg-leaf text-white font-semibold px-6 py-3 rounded-full hover:bg-leaf/90 lift" data-th="ดูสินค้าของเรา" data-en="See our products">ดูสินค้าของเรา</a>
+      <a href="#buy" class="border-2 border-leaf text-leaf font-semibold px-6 py-3 rounded-full hover:bg-leaf/5" data-th="หาซื้อได้ที่ไหน" data-en="Where to buy">หาซื้อได้ที่ไหน</a>
+    </div>
+  </div>
+  <div class="ph rounded-[2rem] aspect-[4/5] shadow-xl fade" data-label="🥗"></div>
+</section>
+
+<!-- WHY / FEATURES -->
+<section id="why" class="bg-white py-16 border-y border-leaf/10">
+  <div class="max-w-6xl mx-auto px-5">
+    <h2 class="font-head font-bold text-3xl text-center mb-3" data-th="ทำไมต้อง FreshLeaf" data-en="Why FreshLeaf">ทำไมต้อง FreshLeaf</h2>
+    <p class="text-center text-ink/60 mb-12" data-th="คุณภาพที่คุณวางใจได้ทุกแพ็ค" data-en="Quality you can trust, every pack">คุณภาพที่คุณวางใจได้ทุกแพ็ค</p>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-cream rounded-2xl p-6 text-center lift fade">
+        <div class="text-4xl mb-3">🌱</div>
+        <h3 class="font-head font-semibold text-lg mb-2" data-th="สดใหม่ทุกวัน" data-en="Fresh daily">สดใหม่ทุกวัน</h3>
+        <p class="text-sm text-ink/60" data-th="คัดผักจากฟาร์มส่งตรงทุกเช้า" data-en="Picked from farm every morning">คัดผักจากฟาร์มส่งตรงทุกเช้า</p>
+      </div>
+      <div class="bg-cream rounded-2xl p-6 text-center lift fade">
+        <div class="text-4xl mb-3">💧</div>
+        <h3 class="font-head font-semibold text-lg mb-2" data-th="ล้างพร้อมทาน" data-en="Washed & ready">ล้างพร้อมทาน</h3>
+        <p class="text-sm text-ink/60" data-th="ล้างสะอาด เปิดแพ็คทานได้เลย" data-en="Cleaned and ready to eat">ล้างสะอาด เปิดแพ็คทานได้เลย</p>
+      </div>
+      <div class="bg-cream rounded-2xl p-6 text-center lift fade">
+        <div class="text-4xl mb-3">🛡️</div>
+        <h3 class="font-head font-semibold text-lg mb-2" data-th="ปลอดภัย ไร้สาร" data-en="Safe & clean">ปลอดภัย ไร้สาร</h3>
+        <p class="text-sm text-ink/60" data-th="ผ่านมาตรฐานความปลอดภัยอาหาร" data-en="Meets food safety standards">ผ่านมาตรฐานความปลอดภัยอาหาร</p>
+      </div>
+      <div class="bg-cream rounded-2xl p-6 text-center lift fade">
+        <div class="text-4xl mb-3">🥗</div>
+        <h3 class="font-head font-semibold text-lg mb-2" data-th="หลากหลายเมนู" data-en="Many varieties">หลากหลายเมนู</h3>
+        <p class="text-sm text-ink/60" data-th="สลัดหลายสูตรให้เลือกตามใจ" data-en="Many salad recipes to choose">สลัดหลายสูตรให้เลือกตามใจ</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products" class="py-20">
+  <div class="max-w-6xl mx-auto px-5">
+    <h2 class="font-head font-bold text-3xl text-center mb-3" data-th="สินค้าของเรา" data-en="Our products">สินค้าของเรา</h2>
+    <p class="text-center text-ink/60 mb-12" data-th="สลัดแพ็คพร้อมทาน คัดสรรเพื่อคุณ" data-en="Ready-to-eat salad packs, curated for you">สลัดแพ็คพร้อมทาน คัดสรรเพื่อคุณ</p>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
+      <article class="bg-white rounded-3xl overflow-hidden shadow-sm lift fade">
+        <div class="ph aspect-[4/3]" data-label="🥗"></div>
+        <div class="p-6">
+          <h3 class="font-head font-semibold text-xl mb-1" data-th="การ์เด้น สลัด" data-en="Garden Salad">การ์เด้น สลัด</h3>
+          <p class="text-sm text-ink/60 mb-3" data-th="ผักสลัดรวมสดกรอบ พร้อมน้ำสลัดสูตรพิเศษ" data-en="Crisp mixed greens with signature dressing">ผักสลัดรวมสดกรอบ พร้อมน้ำสลัดสูตรพิเศษ</p>
+          <span class="inline-block bg-lime/20 text-leaf text-xs font-semibold px-3 py-1 rounded-full">150g</span>
+        </div>
+      </article>
+      <article class="bg-white rounded-3xl overflow-hidden shadow-sm lift fade">
+        <div class="ph aspect-[4/3]" data-label="🥬"></div>
+        <div class="p-6">
+          <h3 class="font-head font-semibold text-xl mb-1" data-th="ซีซาร์ สลัด" data-en="Caesar Salad">ซีซาร์ สลัด</h3>
+          <p class="text-sm text-ink/60 mb-3" data-th="ผักกรอบ ครูตอง พร้อมซีซาร์ดรेสซิ่ง" data-en="Crisp lettuce, croutons & Caesar dressing">ผักกรอบ ครูตอง พร้อมซีซาร์ดรสซิ่ง</p>
+          <span class="inline-block bg-lime/20 text-leaf text-xs font-semibold px-3 py-1 rounded-full">150g</span>
+        </div>
+      </article>
+      <article class="bg-white rounded-3xl overflow-hidden shadow-sm lift fade">
+        <div class="ph aspect-[4/3]" data-label="🍅"></div>
+        <div class="p-6">
+          <h3 class="font-head font-semibold text-xl mb-1" data-th="อิตาเลียน สลัด" data-en="Italian Salad">อิตาเลียน สลัด</h3>
+          <p class="text-sm text-ink/60 mb-3" data-th="ผักสไตล์อิตาเลียน มะเขือเทศ มอสซาเรลล่า" data-en="Italian-style greens, tomato & mozzarella">ผักสไตล์อิตาเลียน มะเขือเทศ มอสซาเรลล่า</p>
+          <span class="inline-block bg-lime/20 text-leaf text-xs font-semibold px-3 py-1 rounded-full">150g</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- LIFESTYLE -->
+<section id="lifestyle" class="bg-leaf text-white py-20">
+  <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-2 gap-10 items-center">
+    <div class="ph rounded-[2rem] aspect-[4/3] fade" data-label="🌿"></div>
+    <div class="fade">
+      <h2 class="font-head font-bold text-3xl mb-5" data-th="กินดี อยู่ดี ทุกวัน" data-en="Eat well, live well">กินดี อยู่ดี ทุกวัน</h2>
+      <p class="text-white/85 text-lg mb-6" data-th="เพราะสุขภาพดีเริ่มจากมื้ออาหารง่ายๆ FreshLeaf อยากให้การกินผักเป็นเรื่องสะดวกและอร่อยสำหรับทุกคน" data-en="Good health starts with simple meals. FreshLeaf makes eating greens easy and delicious for everyone.">เพราะสุขภาพดีเริ่มจากมื้ออาหารง่ายๆ FreshLeaf อยากให้การกินผักเป็นเรื่องสะดวกและอร่อยสำหรับทุกคน</p>
+      <div class="flex gap-8">
+        <div><div class="font-head font-extrabold text-3xl">100%</div><div class="text-sm text-white/75" data-th="ผักคัดสด" data-en="Fresh greens">ผักคัดสด</div></div>
+        <div><div class="font-head font-extrabold text-3xl">0</div><div class="text-sm text-white/75" data-th="สารกันบูด" data-en="Preservatives">สารกันบูด</div></div>
+        <div><div class="font-head font-extrabold text-3xl">15+</div><div class="text-sm text-white/75" data-th="เมนูสลัด" data-en="Salad menus">เมนูสลัด</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHERE TO BUY -->
+<section id="buy" class="py-20">
+  <div class="max-w-4xl mx-auto px-5 text-center">
+    <h2 class="font-head font-bold text-3xl mb-3" data-th="หาซื้อได้ที่ไหน" data-en="Where to buy">หาซื้อได้ที่ไหน</h2>
+    <p class="text-ink/60 mb-10" data-th="พบ FreshLeaf ได้ที่ซูเปอร์มาร์เก็ตชั้นนำใกล้บ้านคุณ" data-en="Find FreshLeaf at leading supermarkets near you">พบ FreshLeaf ได้ที่ซูเปอร์มาร์เก็ตชั้นนำใกล้บ้านคุณ</p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <div class="bg-white border border-leaf/15 rounded-2xl px-8 py-6 font-head font-bold text-xl text-leaf lift">Top Supermarket</div>
+      <div class="bg-white border border-leaf/15 rounded-2xl px-8 py-6 font-head font-bold text-xl text-leaf lift">Gourmet Market</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-ink text-cream/80 py-12">
+  <div class="max-w-6xl mx-auto px-5 flex flex-col md:flex-row justify-between gap-6">
+    <div>
+      <div class="flex items-center gap-2 font-head font-extrabold text-lime text-xl mb-2"><span>🥗</span> FreshLeaf</div>
+      <p class="text-sm text-cream/50" data-th="ผักสลัดสด พร้อมทาน เพื่อสุขภาพดีของทุกคน" data-en="Fresh ready-to-eat salads for everyone's wellbeing">ผักสลัดสด พร้อมทาน เพื่อสุขภาพดีของทุกคน</p>
+    </div>
+    <div class="flex gap-6 text-sm">
+      <a href="#" class="hover:text-lime">Facebook</a>
+      <a href="#" class="hover:text-lime">Instagram</a>
+      <a href="#" class="hover:text-lime">TikTok</a>
+    </div>
+  </div>
+  <div class="max-w-6xl mx-auto px-5 mt-8 pt-6 border-t border-cream/10 text-xs text-cream/40">© 2026 FreshLeaf — Mock-up demo (Variant A · Fresh Garden)</div>
+</footer>
+
+<script>
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-th]').forEach(el=>{
+      const v = el.getAttribute('data-'+lang);
+      if(v!==null) el.innerHTML = v.replace(/\\n/g,'<br/>');
+    });
+    document.getElementById('th-btn').className = 'text-sm font-semibold px-2 py-1 rounded ' + (lang==='th'?'text-leaf':'text-ink/40');
+    document.getElementById('en-btn').className = 'text-sm font-semibold px-2 py-1 rounded ' + (lang==='en'?'text-leaf':'text-ink/40');
+  }
+  // scroll reveal
+  const io = new IntersectionObserver((es)=>es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); }),{threshold:.15});
+  document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

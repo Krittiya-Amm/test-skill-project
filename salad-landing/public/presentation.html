@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Verdant — Process Deck (DES-2068)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --leaf:#3e7c4f; --leaf-dark:#2c5c39; --lime:#8fbf5b;
+    --cream:#fafaf5; --ink:#1f2a24; --stone:#5f6b60; --earth:#e8e2d0;
+    --serif:"Fraunces","IBM Plex Sans Thai",Georgia,serif;
+    --sans:"Inter","IBM Plex Sans Thai",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-snap-type:y mandatory;scroll-behavior:smooth;scroll-padding:0}
+  body{
+    font-family:var(--sans); background:var(--ink); color:var(--ink);
+    overflow-x:hidden; -webkit-font-smoothing:antialiased;
+  }
+  .deck{position:relative;width:100%}
+  .slide{
+    position:relative;display:flex;flex-direction:column;
+    padding:6vh 7vw; background:var(--cream);
+    min-height:100vh; scroll-snap-align:start; scroll-snap-stop:always;
+    opacity:0; transform:translateY(18px); transition:opacity .55s ease,transform .55s ease;
+  }
+  .slide.in{opacity:1;transform:none}
+  .slide.dark{background:var(--ink);color:var(--cream)}
+  .slide.leaf{background:linear-gradient(140deg,var(--leaf) 0%,var(--leaf-dark) 100%);color:var(--cream)}
+
+  .eyebrow{font-size:.8rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--leaf);margin-bottom:1.2rem}
+  .dark .eyebrow,.leaf .eyebrow{color:var(--lime)}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.4rem,6vw,5rem);line-height:1.04;letter-spacing:-.02em}
+  h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.8rem,4vw,3.2rem);line-height:1.08;letter-spacing:-.015em;margin-bottom:1.4rem}
+  h3{font-family:var(--serif);font-weight:600;font-size:1.35rem;margin-bottom:.4rem}
+  p,li{font-size:clamp(.95rem,1.25vw,1.15rem);line-height:1.65;color:var(--stone)}
+  .dark p,.dark li,.leaf p,.leaf li{color:rgba(250,250,245,.82)}
+  .lead{max-width:60ch}
+  strong{color:var(--ink);font-weight:600}.dark strong,.leaf strong{color:var(--cream)}
+
+  .row{display:flex;gap:2rem;flex:1;min-height:0}
+  .col{flex:1;display:flex;flex-direction:column;justify-content:center;min-width:0}
+  .center{justify-content:center}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
+
+  .card{background:#fff;border:1px solid var(--earth);border-radius:18px;padding:1.4rem 1.5rem}
+  .dark .card{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12)}
+  .card .num{font-family:var(--serif);font-size:2.4rem;color:var(--lime);line-height:1;font-weight:500}
+  .pill{display:inline-block;border:1px solid rgba(62,124,79,.3);color:var(--leaf);border-radius:999px;padding:.3rem .9rem;font-size:.78rem;font-weight:600;letter-spacing:.04em}
+  .dark .pill,.leaf .pill{border-color:rgba(143,191,91,.5);color:var(--lime)}
+
+  ul.clean{list-style:none}
+  ul.clean li{position:relative;padding-left:1.6rem;margin:.5rem 0}
+  ul.clean li::before{content:"";position:absolute;left:0;top:.62em;width:.5rem;height:.5rem;border-radius:50%;background:var(--leaf)}
+  .dark ul.clean li::before,.leaf ul.clean li::before{background:var(--lime)}
+
+  .kv{display:flex;flex-direction:column;gap:.85rem}
+  .kv .item{display:flex;gap:.9rem;align-items:baseline}
+  .kv .k{flex:0 0 9rem;font-weight:600;color:var(--ink);font-size:.95rem}
+  .dark .kv .k{color:var(--cream)}
+  .kv .v{color:var(--stone);font-size:.98rem}.dark .kv .v{color:rgba(250,250,245,.8)}
+
+  /* pipeline */
+  .pipe{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
+  .step{flex:1;min-width:120px;border-radius:14px;padding:1rem .9rem;background:#fff;border:1px solid var(--earth);position:relative}
+  .step .s-no{font-size:.72rem;font-weight:700;color:var(--lime);letter-spacing:.1em}
+  .step .s-t{font-family:var(--serif);font-size:1.05rem;color:var(--ink);margin-top:.2rem}
+  .step .s-d{font-size:.8rem;color:var(--stone);margin-top:.3rem}
+  .step.done{background:var(--leaf);border-color:var(--leaf)}
+  .step.done .s-t{color:#fff}.step.done .s-no{color:#dff0d2}.step.done .s-d{color:rgba(255,255,255,.85)}
+  .step.now{border-color:var(--leaf);box-shadow:0 0 0 3px rgba(62,124,79,.18)}
+  .step .check{position:absolute;top:.7rem;right:.8rem;color:#fff;font-size:.9rem}
+
+  /* swatches */
+  .swatches{display:flex;gap:1rem;flex-wrap:wrap;margin-top:.5rem}
+  .sw{display:flex;flex-direction:column;gap:.5rem;align-items:flex-start}
+  .sw .chip{width:96px;height:96px;border-radius:14px;border:1px solid rgba(0,0,0,.08)}
+  .sw small{font-size:.78rem;color:var(--stone)}.sw b{font-size:.85rem;color:var(--ink)}
+
+  .shot{border-radius:16px;overflow:hidden;border:1px solid var(--earth);background:#fff;height:100%}
+  .shot img{width:100%;height:100%;object-fit:cover;display:block}
+  .variant{display:flex;flex-direction:column;gap:.6rem}
+  .tradeoff{font-size:.85rem}.tradeoff .pro{color:var(--leaf)}.tradeoff .con{color:#b06a4f}
+
+  .stat{display:flex;flex-direction:column}
+  .stat b{font-family:var(--serif);font-size:2.4rem;color:var(--leaf);line-height:1}
+  .dark .stat b,.leaf .stat b{color:var(--lime)}
+  .stat span{font-size:.82rem;color:var(--stone);margin-top:.25rem}.dark .stat span{color:rgba(250,250,245,.75)}
+
+  /* footer chrome */
+  .chrome{position:fixed;bottom:1.4rem;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:0 2rem;pointer-events:none;z-index:20}
+  .brandmark{font-family:var(--serif);font-weight:600;font-size:1rem;color:var(--leaf);pointer-events:auto}
+  .slide.dark ~ .chrome .brandmark{}
+  .dots{display:flex;gap:.4rem;pointer-events:auto}
+  .dot{width:8px;height:8px;border-radius:50%;background:rgba(31,42,36,.22);cursor:pointer;transition:.2s}
+  .dot.on{background:var(--leaf);width:22px;border-radius:999px}
+  .counter{font-size:.8rem;color:var(--stone);pointer-events:auto;font-variant-numeric:tabular-nums}
+  .hint{position:fixed;top:1.3rem;right:1.6rem;font-size:.75rem;color:var(--stone);z-index:20;opacity:.7}
+  .backlink{position:fixed;top:1.1rem;left:1.6rem;z-index:30;display:inline-flex;align-items:center;gap:.4rem;
+    background:var(--cream);border:1px solid var(--earth);color:var(--leaf);
+    font-family:var(--sans);font-weight:600;font-size:.8rem;text-decoration:none;
+    padding:.45rem .85rem;border-radius:999px;box-shadow:0 1px 6px rgba(0,0,0,.06);transition:.18s}
+  .backlink:hover{background:var(--leaf);color:var(--cream);border-color:var(--leaf)}
+  .tag{font-size:.72rem;color:var(--stone);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.6rem;font-weight:600}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <!-- 1 TITLE -->
+  <section class="slide leaf">
+    <div class="col center">
+      <div class="eyebrow">Sellsuki · Project Track · Jira DES-2068</div>
+      <h1>Verdant<br/>Salad Landing Page</h1>
+      <p class="lead" style="margin-top:1.4rem;font-size:1.2rem;max-width:52ch">
+        Mock-up demo เว็บนำเสนอแบรนด์ผักสลัดแบบแพ็ค — <strong>2 ภาษา (ไทย/อังกฤษ)</strong>,
+        mood รักสุขภาพสายคลีน, วางขายใน Tops Supermarket / Gourmet Market
+      </p>
+      <div style="margin-top:2.2rem;display:flex;gap:.7rem;flex-wrap:wrap">
+        <span class="pill">Tier S · Landing เดียว</span>
+        <span class="pill">Next.js + Tailwind</span>
+        <span class="pill">Process: Brief → Code → Deploy</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 OVERVIEW -->
+  <section class="slide">
+    <div class="eyebrow">ภาพรวมโปรเจกต์</div>
+    <h2>โจทย์เดียว: เล่าแบรนด์ให้ดูสด สะอาด น่าเชื่อถือ</h2>
+    <div class="row">
+      <div class="col">
+        <div class="kv">
+          <div class="item"><span class="k">ลูกค้า</span><span class="v">ธุรกิจผักสลัดแบบแพ็ค (ขายใน Tops / Gourmet Market)</span></div>
+          <div class="item"><span class="k">เป้าหมาย</span><span class="v">Landing นำเสนอแบรนด์ + สินค้า + จุดที่หาซื้อได้ เพื่อใช้ pitch ลูกค้า</span></div>
+          <div class="item"><span class="k">ผู้ใช้</span><span class="v">ผู้บริโภคสายสุขภาพ (mobile-first) + buyer ของซูเปอร์มาร์เก็ต</span></div>
+          <div class="item"><span class="k">ขนาดงาน</span><span class="v">Tier S — หน้าเดียว, responsive, 2 ภาษา, ~4–5 วัน</span></div>
+          <div class="item"><span class="k">คู่แข่งอ้างอิง</span><span class="v">Oh! Veggies (packed salad ใน Tops เหมือนกัน)</span></div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="tag">In scope</div>
+          <ul class="clean">
+            <li>Landing หน้าเดียว · 7 sections · responsive</li>
+            <li>รองรับ 2 ภาษา (TH / EN)</li>
+            <li>Code repo + README + staging deploy + handoff</li>
+          </ul>
+          <div class="tag" style="margin-top:1.2rem">Out of scope</div>
+          <ul class="clean">
+            <li>ระบบตะกร้า/ชำระเงิน · backend/CMS · multi-page</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 WORKFLOW -->
+  <section class="slide dark">
+    <div class="eyebrow">วิธีทำงาน — Sellsuki Project Standard</div>
+    <h2>7 Stage จาก brief ถึง handoff</h2>
+    <p class="lead">แต่ละ stage มี gate ชัดเจน และมี <strong>client checkpoint</strong> เป็นจุดหยุดขออนุมัติ — ตอนนี้อยู่ที่ Stage 4</p>
+    <div class="pipe" style="margin-top:1.6rem">
+      <div class="step done"><span class="check">✓</span><div class="s-no">00</div><div class="s-t">Brief</div><div class="s-d">PM Card</div></div>
+      <div class="step done"><span class="check">✓</span><div class="s-no">01</div><div class="s-t">Research</div><div class="s-d">+ Plan</div></div>
+      <div class="step done"><span class="check">✓</span><div class="s-no">02</div><div class="s-t">Vibe Design</div><div class="s-d">2 variants</div></div>
+      <div class="step done"><span class="check">✓</span><div class="s-no">03</div><div class="s-t">Vibe Code</div><div class="s-d">build</div></div>
+      <div class="step now"><div class="s-no">04</div><div class="s-t">Deploy</div><div class="s-d">staging URL ← ตอนนี้</div></div>
+      <div class="step"><div class="s-no">05</div><div class="s-t">Test</div><div class="s-d">UAT</div></div>
+      <div class="step"><div class="s-no">06</div><div class="s-t">Handoff</div><div class="s-d">ส่งมอบ</div></div>
+    </div>
+    <p style="margin-top:1.6rem;font-size:.95rem">🛑 Checkpoint ลูกค้า: หลัง Stage 2 (เลือกแบบ) และหลัง Stage 5 (UAT sign-off)</p>
+  </section>
+
+  <!-- 4 STAGE 0 -->
+  <section class="slide">
+    <div class="eyebrow">Stage 0 — Brief Intake</div>
+    <h2>แปลง brief ดิบเป็น PM Card</h2>
+    <div class="row">
+      <div class="col">
+        <p class="lead">จาก Jira card สั้น ๆ → จัดโครงเป็น project card: identity, tier, objective, scope, milestone, open questions</p>
+        <h3 style="margin-top:1.4rem">คำถามที่ยังเปิดอยู่ (ไม่บล็อก demo)</h3>
+        <ul class="clean">
+          <li>ชื่อแบรนด์ + logo + corporate color</li>
+          <li>มีรูปสินค้าจริง / โทนภาพที่อยากได้ไหม</li>
+          <li>Copy TH/EN ลูกค้าเตรียม หรือทีม draft</li>
+          <li>จุดขายที่อยาก highlight (organic/hydroponic/pre-washed)</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="card">
+          <h3>การตัดสินใจสำคัญ</h3>
+          <p style="margin-top:.5rem">งานมาจาก Jira แต่เป็น <strong>client mockup</strong> → ใช้ <strong>Project track</strong> (agency-style จบที่ handoff) ไม่ใช่ Product track</p>
+          <div style="height:1px;background:var(--earth);margin:1.1rem 0"></div>
+          <p>ยังไม่มี brand kit → ตกลง workaround: ใช้ <strong>neutral palette</strong> + เสนอ 2 directions ให้ลูกค้าเลือก แล้วค่อย swap เมื่อได้ของจริง</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 STAGE 1 RESEARCH -->
+  <section class="slide">
+    <div class="eyebrow">Stage 1 — Research &amp; Plan</div>
+    <h2>เข้าใจตลาด ผู้ใช้ และคู่แข่ง</h2>
+    <div class="grid3" style="margin-top:.5rem">
+      <div class="card">
+        <h3>Domain</h3>
+        <p style="margin-top:.4rem">Packed salad พรีเมียมขายผ่าน retail — ตัดสินด้วย "ภาพสด", trust จาก transparency, โทน green/white/earth เป็น convention</p>
+      </div>
+      <div class="card">
+        <h3>ผู้ใช้</h3>
+        <p style="margin-top:.4rem">Mobile-first, สแกนจาก packaging/social. งานหลัก: ดูสินค้า → รับรู้จุดเด่น → รู้ว่าซื้อที่ไหน (ไม่ checkout บนเว็บ)</p>
+      </div>
+      <div class="card">
+        <h3>คู่แข่ง — Oh! Veggies</h3>
+        <p style="margin-top:.4rem">เน้น product listing + retail แต่ brand storytelling ยังบาง → <strong>โอกาสของเรา</strong>: ทำให้พรีเมียม + เล่าเรื่องแบรนด์มากกว่า</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top:1.4rem;background:var(--leaf);border-color:var(--leaf)">
+      <p style="color:#fff;font-size:1.1rem"><strong style="color:#fff">Key insight:</strong> conversion จริงอยู่ที่ shelf ไม่ใช่บนเว็บ — เว็บคือ awareness &amp; credibility แล้วปิดด้วย "where to buy" ที่ชัด</p>
+    </div>
+  </section>
+
+  <!-- 6 STAGE 1 BRAND -->
+  <section class="slide">
+    <div class="eyebrow">Stage 1 — Brand Direction &amp; Stack</div>
+    <h2>Palette ที่เสนอ + tech stack ที่ล็อก</h2>
+    <div class="row">
+      <div class="col">
+        <div class="swatches">
+          <div class="sw"><div class="chip" style="background:#3e7c4f"></div><b>Leaf</b><small>#3E7C4F · primary</small></div>
+          <div class="sw"><div class="chip" style="background:#8fbf5b"></div><b>Lime</b><small>#8FBF5B · accent</small></div>
+          <div class="sw"><div class="chip" style="background:#fafaf5"></div><b>Cream</b><small>#FAFAF5 · bg</small></div>
+          <div class="sw"><div class="chip" style="background:#1f2a24"></div><b>Ink</b><small>#1F2A24 · text</small></div>
+          <div class="sw"><div class="chip" style="background:#e8e2d0"></div><b>Earth</b><small>#E8E2D0 · divider</small></div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="tag">Tech stack (locked)</div>
+          <ul class="clean">
+            <li><strong>Next.js</strong> (App Router) + TypeScript</li>
+            <li><strong>Tailwind CSS</strong> — utility, AI-friendly</li>
+            <li><strong>Motion</strong> — subtle scroll reveal, premium feel</li>
+            <li>2 ภาษา TH/EN · Deploy บน Vercel</li>
+          </ul>
+          <p style="margin-top:.9rem;font-size:.85rem">เหตุผล: marketing landing ต้อง SEO + เร็ว + responsive + 2 ภาษา · ⚠ ไม่ใช้ Sellsuki DS (project track)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 STAGE 2 VARIANTS -->
+  <section class="slide">
+    <div class="eyebrow">Stage 2 — Vibe Design</div>
+    <h2>เสนอ 2 ทิศทางให้ลูกค้าเลือก</h2>
+    <div class="grid2" style="flex:1">
+      <div class="card variant">
+        <span class="pill">Variant A</span>
+        <h3 style="margin-top:.3rem">Fresh Garden</h3>
+        <p>เขียวสด เป็นกันเอง — โทนเขียว+ไลม์, การ์ดมน, ภาพผักเด่น, energetic</p>
+        <p class="tradeoff"><span class="pro">+ อบอุ่น เข้าถึงง่าย mass market</span><br/><span class="con">− mainstream อาจไม่ต่างจากคู่แข่ง</span></p>
+      </div>
+      <div class="card variant">
+        <span class="pill">Variant B</span>
+        <h3 style="margin-top:.3rem">Premium Clean</h3>
+        <p>ขาว/เอิร์ธ มินิมอล — serif (Fraunces), whitespace เยอะ, editorial, high-end</p>
+        <p class="tradeoff"><span class="pro">+ พรีเมียม โดดเด่น เหมาะ Gourmet</span><br/><span class="con">− เรียบ ต้องพึ่งภาพถ่ายคุณภาพสูง</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 STAGE 2 PICK -->
+  <section class="slide leaf">
+    <div class="eyebrow">Stage 2 — The Pick</div>
+    <h2>Hybrid: “Premium Garden”</h2>
+    <div class="row">
+      <div class="col">
+        <p class="lead" style="font-size:1.25rem">
+          ลูกค้าเลือก <strong>“เอา layout B แต่โทนเขียวแบบ A”</strong>
+        </p>
+        <ul class="clean" style="margin-top:1rem">
+          <li>โครงสร้าง editorial ของ B — serif headline, whitespace, asymmetric grid, numbered philosophy</li>
+          <li>โทนสีเขียวสด leaf/lime ของ A บนพื้น off-white</li>
+          <li>ได้ทั้งความพรีเมียม + ความสดชื่นของผัก</li>
+        </ul>
+      </div>
+      <div class="col center">
+        <div class="card" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2)">
+          <p style="font-size:1.3rem;text-align:center;color:#fff">
+            Layout <b style="font-family:var(--serif)">B</b>
+            &nbsp;+&nbsp; โทนสี <b style="font-family:var(--serif)">A</b>
+            <br/><span style="font-size:.95rem">= พรีเมียม สะอาด สงบ · สดด้วยเขียวธรรมชาติ</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 STAGE 3 BUILD + shots -->
+  <section class="slide dark">
+    <div class="eyebrow">Stage 3 — Vibe Code</div>
+    <h2>หน้าเว็บจริงที่ build เสร็จ</h2>
+    <div class="row">
+      <div class="col" style="flex:1.1">
+        <div class="grid4" style="height:300px">
+          <div class="shot"><img src="/images/hero.jpg" alt=""/></div>
+          <div class="shot"><img src="/images/product-garden.jpg" alt=""/></div>
+          <div class="shot"><img src="/images/product-caesar.jpg" alt=""/></div>
+          <div class="shot"><img src="/images/product-avocado.jpg" alt=""/></div>
+        </div>
+      </div>
+    </div>
+    <div class="grid3" style="margin-top:1.3rem">
+      <div><div class="stat"><b>7</b><span>sections (Hero → Footer)</span></div></div>
+      <div><div class="stat"><b>2</b><span>ภาษา สลับได้ + จำค่า</span></div></div>
+      <div><div class="stat"><b>9</b><span>รูปสินค้าจริง · next/image</span></div></div>
+    </div>
+    <p style="margin-top:1rem;font-size:.92rem">✓ build ผ่าน · 0 console error · responsive desktop+mobile · scroll-reveal animation</p>
+  </section>
+
+  <!-- 10 STATUS / NEXT -->
+  <section class="slide">
+    <div class="eyebrow">สถานะ &amp; ก้าวต่อไป</div>
+    <h2>เหลืออีก 3 stage</h2>
+    <div class="row">
+      <div class="col">
+        <div class="kv">
+          <div class="item"><span class="k">✓ Stage 0–3</span><span class="v">Brief · Research · Design · Code — เสร็จและ verify แล้ว</span></div>
+          <div class="item"><span class="k" style="color:var(--leaf)">→ Stage 4</span><span class="v">Deploy ขึ้น Vercel → ลิงก์ส่งลูกค้า (ตอนนี้)</span></div>
+          <div class="item"><span class="k">Stage 5</span><span class="v">Test &amp; Improve — UAT round 1 (budget 1 รอบ)</span></div>
+          <div class="item"><span class="k">Stage 6</span><span class="v">Handoff — design doc + repo + access</span></div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="tag">ก่อน production ควรปิด</div>
+          <ul class="clean">
+            <li>ชื่อแบรนด์ + logo + สีจริง (demo ใช้ "Verdant" + palette เสนอ)</li>
+            <li>ภาพถ่ายสินค้าจริง (demo ใช้ stock Unsplash)</li>
+            <li>Copy TH/EN final จากลูกค้า</li>
+            <li>i18n: ตอนนี้เป็น client toggle → ย้ายไป next-intl ถ้าต้อง SEO ต่อ locale</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 CLOSE -->
+  <section class="slide leaf">
+    <div class="col center">
+      <h1>ความสดที่คุณ<br/>สัมผัสได้ในทุกคำ</h1>
+      <p class="lead" style="margin-top:1.4rem;font-size:1.15rem">
+        จาก brief → research → design → code ภายใน flow เดียว พร้อม deploy ให้ลูกค้าดูแล้ว
+      </p>
+      <div style="margin-top:2rem" class="brandmark" >Verdant<span style="color:#dff0d2">.</span></div>
+      <a href="/" style="margin-top:1.6rem;display:inline-flex;align-items:center;gap:.5rem;align-self:flex-start;background:var(--cream);color:var(--leaf);font-family:var(--sans);font-weight:600;font-size:.95rem;text-decoration:none;padding:.7rem 1.4rem;border-radius:999px;transition:.18s" onmouseover="this.style.opacity=.85" onmouseout="this.style.opacity=1">เปิดเว็บไซต์จริง →</a>
+    </div>
+  </section>
+
+</div>
+
+<a href="/" class="backlink">← เว็บไซต์ Verdant</a>
+<div class="hint">เลื่อนลง ↓ หรือกด ← → · F = fullscreen</div>
+<div class="chrome">
+  <div class="brandmark">Verdant<span style="color:var(--lime)">.</span> <span style="color:var(--stone);font-family:var(--sans);font-weight:400;font-size:.8rem">— Process Deck</span></div>
+  <div class="dots" id="dots"></div>
+  <div class="counter"><span id="cur">1</span> / <span id="tot">11</span></div>
+</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  const dotsWrap=document.getElementById('dots');
+  let i=0;
+  slides.forEach((_,n)=>{const d=document.createElement('div');d.className='dot'+(n===0?' on':'');d.onclick=()=>slides[n].scrollIntoView({behavior:'smooth'});dotsWrap.appendChild(d);});
+  const dots=[...document.querySelectorAll('.dot')];
+  document.getElementById('tot').textContent=slides.length;
+
+  function setCurrent(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    dots.forEach((d,k)=>d.classList.toggle('on',k===i));
+    document.getElementById('cur').textContent=i+1;
+  }
+
+  // Reveal on enter + track which slide is centered in the viewport
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        if(e.intersectionRatio>=0.5) setCurrent(slides.indexOf(e.target));
+      }
+    });
+  },{threshold:[0.25,0.5,0.75]});
+  slides.forEach(s=>io.observe(s));
+  slides[0].classList.add('in');
+
+  function go(d){slides[Math.max(0,Math.min(slides.length-1,i+d))].scrollIntoView({behavior:'smooth'});}
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight','PageDown'].includes(e.key)){e.preventDefault();go(1);}
+    else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(-1);}
+    else if(e.key==='Home'){e.preventDefault();slides[0].scrollIntoView({behavior:'smooth'});}
+    else if(e.key==='End'){e.preventDefault();slides[slides.length-1].scrollIntoView({behavior:'smooth'});}
+    else if(e.key.toLowerCase()==='f'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}
+  });
+</script>
+</body>
+</html>

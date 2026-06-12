@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Variant B — Premium Clean | ผักสลัด</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          leaf: '#4A6B4D', sage: '#9CAE8E', paper: '#FBFAF6',
+          ink: '#23271F', earth: '#D9D2BE', stone: '#6E6B5E',
+        },
+        fontFamily: {
+          serif: ['Fraunces', 'IBM Plex Sans Thai', 'serif'],
+          sans: ['Inter', 'IBM Plex Sans Thai', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter','IBM Plex Sans Thai',sans-serif; }
+  .ph { background: linear-gradient(160deg,#eceadd 0%,#d9d2be 55%,#b9c2a3 100%); position:relative; overflow:hidden; }
+  .ph::after { content: attr(data-label); position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:2.2rem; opacity:.7; }
+  .fade { opacity:0; transform: translateY(24px); transition: all .9s cubic-bezier(.2,.7,.2,1); }
+  .fade.in { opacity:1; transform:none; }
+  .ul-link { position:relative; }
+  .ul-link::after { content:''; position:absolute; left:0; bottom:-3px; height:1px; width:100%; background:currentColor; transform:scaleX(0); transform-origin:left; transition:transform .3s; }
+  .ul-link:hover::after { transform:scaleX(1); }
+</style>
+</head>
+<body class="bg-paper text-ink font-sans">
+
+<!-- NAV -->
+<header class="sticky top-0 z-50 bg-paper/80 backdrop-blur">
+  <nav class="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
+    <div class="font-serif text-2xl tracking-tight">Verdé<span class="text-sage">.</span></div>
+    <div class="hidden md:flex items-center gap-9 text-sm text-stone tracking-wide">
+      <a href="#products" class="ul-link" data-th="สินค้า" data-en="Products">สินค้า</a>
+      <a href="#why" class="ul-link" data-th="ปรัชญา" data-en="Philosophy">ปรัชญา</a>
+      <a href="#lifestyle" class="ul-link" data-th="วิถีชีวิต" data-en="Lifestyle">วิถีชีวิต</a>
+      <a href="#buy" class="ul-link" data-th="จุดจำหน่าย" data-en="Stockists">จุดจำหน่าย</a>
+    </div>
+    <div class="flex items-center gap-4 text-xs tracking-widest">
+      <button onclick="setLang('th')" id="th-btn" class="text-ink">TH</button>
+      <button onclick="setLang('en')" id="en-btn" class="text-stone/40">EN</button>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="max-w-3xl mx-auto px-6 pt-24 pb-16 text-center">
+  <p class="text-sage tracking-[0.25em] uppercase text-xs mb-7 fade" data-th="ผักสลัดพรีเมียม" data-en="Premium fresh salads">ผักสลัดพรีเมียม</p>
+  <h1 class="font-serif font-medium text-5xl md:text-6xl leading-[1.08] mb-7 fade" data-th="ความสด\nในแบบที่เรียบง่าย" data-en="Freshness,\nrefined to simplicity">ความสด<br/>ในแบบที่เรียบง่าย</h1>
+  <p class="text-stone text-lg leading-relaxed max-w-xl mx-auto mb-10 fade" data-th="ผักสลัดคัดสรรอย่างพิถีพิถัน ล้างสะอาด พร้อมเสิร์ฟ คัดเฉพาะคุณภาพที่ดีที่สุดสำหรับทุกมื้อของคุณ" data-en="Meticulously selected greens, cleaned and ready to serve — only the finest quality for every meal.">ผักสลัดคัดสรรอย่างพิถีพิถัน ล้างสะอาด พร้อมเสิร์ฟ คัดเฉพาะคุณภาพที่ดีที่สุดสำหรับทุกมื้อของคุณ</p>
+  <a href="#products" class="inline-block font-serif italic text-lg text-leaf ul-link fade" data-th="ชมคอลเลกชันของเรา →" data-en="Explore our collection →">ชมคอลเลกชันของเรา →</a>
+</section>
+<div class="max-w-5xl mx-auto px-6 pb-24">
+  <div class="ph rounded-sm aspect-[16/7] fade" data-label="🥗"></div>
+</div>
+
+<!-- WHY / PHILOSOPHY -->
+<section id="why" class="border-t border-earth/60 py-24">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="grid md:grid-cols-[1fr_2fr] gap-12">
+      <h2 class="font-serif text-3xl leading-snug fade" data-th="ปรัชญา\nของเรา" data-en="Our\nphilosophy">ปรัชญา<br/>ของเรา</h2>
+      <div class="space-y-10">
+        <div class="flex gap-6 fade">
+          <span class="font-serif text-sage text-2xl">01</span>
+          <div><h3 class="font-medium text-lg mb-1" data-th="คัดสดทุกเช้า" data-en="Picked fresh daily">คัดสดทุกเช้า</h3><p class="text-stone" data-th="ผักทุกใบมาจากฟาร์มที่คัดสรร เก็บเกี่ยวและส่งตรงในทุกเช้า" data-en="Every leaf comes from selected farms, harvested and delivered each morning.">ผักทุกใบมาจากฟาร์มที่คัดสรร เก็บเกี่ยวและส่งตรงในทุกเช้า</p></div>
+        </div>
+        <div class="flex gap-6 fade">
+          <span class="font-serif text-sage text-2xl">02</span>
+          <div><h3 class="font-medium text-lg mb-1" data-th="สะอาด พร้อมเสิร์ฟ" data-en="Clean, ready to serve">สะอาด พร้อมเสิร์ฟ</h3><p class="text-stone" data-th="ผ่านการล้างอย่างพิถีพิถัน เปิดแพ็คพร้อมรับประทานได้ทันที" data-en="Carefully washed — open the pack and enjoy immediately.">ผ่านการล้างอย่างพิถีพิถัน เปิดแพ็คพร้อมรับประทานได้ทันที</p></div>
+        </div>
+        <div class="flex gap-6 fade">
+          <span class="font-serif text-sage text-2xl">03</span>
+          <div><h3 class="font-medium text-lg mb-1" data-th="บริสุทธิ์ ปลอดภัย" data-en="Pure & safe">บริสุทธิ์ ปลอดภัย</h3><p class="text-stone" data-th="ปราศจากสารกันบูด ผ่านมาตรฐานความปลอดภัยอาหารระดับสากล" data-en="No preservatives, meeting international food safety standards.">ปราศจากสารกันบูด ผ่านมาตรฐานความปลอดภัยอาหารระดับสากล</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products" class="bg-[#F4F2EA] py-24">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="flex items-end justify-between mb-14">
+      <h2 class="font-serif text-4xl" data-th="คอลเลกชัน" data-en="The collection">คอลเลกชัน</h2>
+      <p class="text-stone text-sm max-w-xs text-right hidden sm:block" data-th="สลัดแพ็คพร้อมทาน คัดสรรรสชาติที่ลงตัว" data-en="Ready-to-eat salad packs, balanced to perfection">สลัดแพ็คพร้อมทาน คัดสรรรสชาติที่ลงตัว</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-x-10 gap-y-16">
+      <article class="fade">
+        <div class="ph aspect-[5/4] rounded-sm mb-5" data-label="🥗"></div>
+        <div class="flex justify-between items-baseline border-b border-earth pb-3">
+          <h3 class="font-serif text-2xl" data-th="การ์เด้น" data-en="Garden">การ์เด้น</h3>
+          <span class="text-stone text-sm tracking-widest">150 G</span>
+        </div>
+        <p class="text-stone mt-3" data-th="ผักสลัดรวมสดกรอบ พร้อมน้ำสลัดสูตรพิเศษ" data-en="Crisp mixed greens with a signature dressing.">ผักสลัดรวมสดกรอบ พร้อมน้ำสลัดสูตรพิเศษ</p>
+      </article>
+      <article class="fade md:mt-16">
+        <div class="ph aspect-[5/4] rounded-sm mb-5" data-label="🥬"></div>
+        <div class="flex justify-between items-baseline border-b border-earth pb-3">
+          <h3 class="font-serif text-2xl" data-th="ซีซาร์" data-en="Caesar">ซีซาร์</h3>
+          <span class="text-stone text-sm tracking-widest">150 G</span>
+        </div>
+        <p class="text-stone mt-3" data-th="ผักกรอบ ครูตอง พร้อมซีซาร์ดรสซิ่งเข้มข้น" data-en="Crisp lettuce, croutons & rich Caesar dressing.">ผักกรอบ ครูตอง พร้อมซีซาร์ดรสซิ่งเข้มข้น</p>
+      </article>
+      <article class="fade">
+        <div class="ph aspect-[5/4] rounded-sm mb-5" data-label="🍅"></div>
+        <div class="flex justify-between items-baseline border-b border-earth pb-3">
+          <h3 class="font-serif text-2xl" data-th="อิตาเลียน" data-en="Italian">อิตาเลียน</h3>
+          <span class="text-stone text-sm tracking-widest">150 G</span>
+        </div>
+        <p class="text-stone mt-3" data-th="ผักสไตล์อิตาเลียน มะเขือเทศ มอสซาเรลล่า" data-en="Italian-style greens, tomato & mozzarella.">ผักสไตล์อิตาเลียน มะเขือเทศ มอสซาเรลล่า</p>
+      </article>
+      <article class="fade md:mt-16">
+        <div class="ph aspect-[5/4] rounded-sm mb-5" data-label="🥑"></div>
+        <div class="flex justify-between items-baseline border-b border-earth pb-3">
+          <h3 class="font-serif text-2xl" data-th="อะโวคาโด" data-en="Avocado">อะโวคาโด</h3>
+          <span class="text-stone text-sm tracking-widest">150 G</span>
+        </div>
+        <p class="text-stone mt-3" data-th="อะโวคาโดเนื้อนุ่ม ผักสด อุดมไขมันดี" data-en="Creamy avocado with fresh greens, rich in good fats.">อะโวคาโดเนื้อนุ่ม ผักสด อุดมไขมันดี</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- LIFESTYLE -->
+<section id="lifestyle" class="relative">
+  <div class="ph aspect-[21/9] md:aspect-[21/7]" data-label="🌿"></div>
+  <div class="absolute inset-0 bg-ink/35 flex items-center">
+    <div class="max-w-5xl mx-auto px-6 w-full">
+      <div class="max-w-md text-paper fade">
+        <h2 class="font-serif text-4xl mb-5 leading-snug" data-th="ชีวิตดีๆ\nเริ่มจากจานตรงหน้า" data-en="A good life\nbegins on your plate">ชีวิตดีๆ<br/>เริ่มจากจานตรงหน้า</h2>
+        <p class="text-paper/85 leading-relaxed" data-th="เราเชื่อว่าการดูแลตัวเองไม่จำเป็นต้องยุ่งยาก เพียงเลือกสิ่งที่ดีให้ร่างกายในทุกๆ มื้อ" data-en="We believe self-care needn't be complicated — simply choose what's good for your body, one meal at a time.">เราเชื่อว่าการดูแลตัวเองไม่จำเป็นต้องยุ่งยาก เพียงเลือกสิ่งที่ดีให้ร่างกายในทุกๆ มื้อ</p>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHERE TO BUY -->
+<section id="buy" class="py-24">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <p class="text-sage tracking-[0.25em] uppercase text-xs mb-4" data-th="จุดจำหน่าย" data-en="Stockists">จุดจำหน่าย</p>
+    <h2 class="font-serif text-4xl mb-10" data-th="พบเราได้ที่" data-en="Find us at">พบเราได้ที่</h2>
+    <div class="flex flex-wrap justify-center gap-x-14 gap-y-6 font-serif text-2xl text-leaf">
+      <span>Top Supermarket</span>
+      <span class="text-earth">·</span>
+      <span>Gourmet Market</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-earth/60 py-14">
+  <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between gap-8">
+    <div>
+      <div class="font-serif text-2xl mb-2">Verdé<span class="text-sage">.</span></div>
+      <p class="text-stone text-sm max-w-xs" data-th="ผักสลัดพรีเมียม สด สะอาด พร้อมเสิร์ฟ" data-en="Premium salads — fresh, clean, ready to serve.">ผักสลัดพรีเมียม สด สะอาด พร้อมเสิร์ฟ</p>
+    </div>
+    <div class="flex gap-7 text-sm text-stone">
+      <a href="#" class="ul-link">Facebook</a>
+      <a href="#" class="ul-link">Instagram</a>
+      <a href="#" class="ul-link">TikTok</a>
+    </div>
+  </div>
+  <div class="max-w-5xl mx-auto px-6 mt-10 text-xs text-stone/50">© 2026 Verdé — Mock-up demo (Variant B · Premium Clean)</div>
+</footer>
+
+<script>
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-th]').forEach(el=>{
+      const v = el.getAttribute('data-'+lang);
+      if(v!==null) el.innerHTML = v.replace(/\\n/g,'<br/>');
+    });
+    document.getElementById('th-btn').className = (lang==='th'?'text-ink':'text-stone/40');
+    document.getElementById('en-btn').className = (lang==='en'?'text-ink':'text-stone/40');
+  }
+  const io = new IntersectionObserver((es)=>es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); }),{threshold:.12});
+  document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
